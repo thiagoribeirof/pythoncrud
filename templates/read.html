@@ -23,7 +23,7 @@
                 <td>
                     <form action="{{url_for('edit')}}" method="post">
                         <input type="submit" value="Edit" name="edit_button">
-                        <input type="hidden" name="hidden_id" value="{{employee.id}}">
+                        <input type="hidden" name="hidden_id" value="{{employee.id}}"> <!-- it sends the id via form, but through a hidden field-->
                     </form>
                     <form action="{{url_for('delete')}}" method="post">
                         <input type="submit" value="Delete" name="delete_button">

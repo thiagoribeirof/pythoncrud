@@ -1,7 +1,7 @@
 from flask import Flask, request,redirect, render_template, url_for
 import sql
 
-app = Flask(__name__)
+app = Flask(__name__) #intializin Flask
 app.secret_key = 'fwkf434526@g'
 
 @app.route("/", methods = ['POST', 'GET'])
@@ -15,10 +15,10 @@ def insert():
     if request.method=='POST':
         print("post")
         try:
-            employee_name = request.form.get("employee_name")
+            employee_name = request.form.get("employee_name") #getting employee info from the form
             employee_function = request.form.get("employee_function")
             print(employee_name, employee_function)
-            sql.insert_employee(employee_name=employee_name, employee_function=employee_function)
+            sql.insert_employee(employee_name=employee_name, employee_function=employee_function) #calls the insert_employee function
 
         except Exception as  exc:
             print(exc)
@@ -32,7 +32,7 @@ def insert():
     
 @app.route("/read", methods = ['POST', 'GET'])
 def read():
-    all_employees = sql.read_employees()
+    all_employees = sql.read_employees() #call to read_employees function
     return render_template("read.html", all_employees = all_employees)
 
 @app.route('/success')

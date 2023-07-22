@@ -32,10 +32,12 @@ class Employee:
         self.function = function
         self.id = id
 
-def read_employees():
+def read_employees(id=None): #default value is None. If an ID is given, it searchs for the ID.
     cnx = create_connection()
     cursor = cnx.cursor()
     query = "SELECT * FROM employees"
+    if(id): #if ID is given, it's True.
+        query = query + " WHERE employee_id = "+str(id)+";"
     cursor.execute(query)
     results = cursor.fetchall()
     all_employees = []
@@ -49,4 +51,21 @@ def read_employees():
     cnx.close()
     return all_employees
 
+def update_employee(id, name, function):
+    cnx = create_connection()
+    cursor = cnx.cursor()
+    values = (name, function, id)
+    query = "UPDATE employees SET employee_name = %s, employee_function = %s WHERE employee_id = %s"
+    cursor.execute(query, values)
+    cnx.commit()
+    cursor.close()
+    cnx.close()
 
+def delete_employee(id):
+    cnx = create_connection()
+    cursor = cnx.cursor()
+    query = "DELETE FROM employees WHERE employee_id = '%d'" % (int(id))
+    cursor.execute(query)
+    cnx.commit()
+    cursor.close()
+    cnx.close()

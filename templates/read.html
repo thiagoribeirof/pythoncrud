@@ -13,12 +13,25 @@
           <th>Employee ID</th>
           <th>Employee Name</th>
           <th>Employee Function</th>
+          <th>Actions</th>
         </tr>
         {% for employee in all_employees %}
             <tr>
                 <td>{{employee.id}}</td>
                 <td>{{employee.name}}</td>
                 <td>{{employee.function}}</td>
+                <td>
+                    <form action="{{url_for('edit')}}" method="post">
+                        <input type="submit" value="Edit" name="edit_button">
+                        <input type="hidden" name="hidden_id" value="{{employee.id}}">
+                    </form>
+                    <form action="{{url_for('delete')}}" method="post">
+                        <input type="submit" value="Delete" name="delete_button">
+                        <input type="hidden" name="hidden_id_del" value="{{employee.id}}">
+                    </form>
+                    
+                </td>
+
             </tr>
         {% endfor %}
         

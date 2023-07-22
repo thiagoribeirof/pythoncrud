@@ -40,3 +40,38 @@ def success():
 
     return render_template('success.html')
 
+@app.route('/edit', methods=['GET', 'POST'])
+def edit():
+    print(request.method)
+    if request.method=="POST":
+        employee_id = int(request.form.get("hidden_id"))
+        employeeObj = sql.read_employees(employee_id)[0]
+    return render_template('edit.html', employeeObj=employeeObj)
+
+@app.route('/update', methods=['GET', 'POST'])
+def update():
+    if request.method=="POST":
+        employee_name = request.form.get("new_name")
+        employee_function = request.form.get("new_function")
+        employee_id = request.form.get("hidden_id")
+        try:
+            sql.update_employee(employee_id, employee_name, employee_function)
+            template = 'success.html'
+        except Exception as exc:
+            print(exc)
+            template = 'fail.html'
+
+    return render_template(template)
+
+@app.route('/delete', methods=['GET', 'POST'])
+def delete():
+    if request.method=="POST":
+        id = request.form.get("hidden_id_del")
+        try:
+            sql.delete_employee(id)
+            template = 'success.html'
+        except Exception as exc:
+            print(exc)
+            template = 'fail.html'
+        
+    return render_template(template)

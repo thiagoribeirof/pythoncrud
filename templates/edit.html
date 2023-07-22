@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit employee {{employeeObj}}</title>
+</head>
+<body>
+    <h1>Editing employee</h1>
+    <ul>
+        <li>Employee id: {{employeeObj.id}}</li>
+        <li>Employee name: {{employeeObj.name}}</li>
+        <li>Employee function: {{employeeObj.function}}</li>
+    </ul>
+    <form action="{{url_for('update')}}" method="post">
+        <input type="text" name="new_name" placeholder="{{employeeObj.name}}" required="required">
+        <input type="text" name="new_function" placeholder="{{employeeObj.function}}" required="required">
+        <input type="submit" value="Update" name="update_button">
+        <input type="hidden" name="hidden_id" value="{{employeeObj.id}}">
+    </form>
+</body>
+</html>

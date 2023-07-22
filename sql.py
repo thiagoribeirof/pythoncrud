@@ -25,14 +25,28 @@ def insert_employee(employee_name, employee_function):
     cursor.close()
     cnx.close()
 
+
+class Employee:
+    def __init__(self, name, function, id):
+        self.name = name
+        self.function = function
+        self.id = id
+
 def read_employees():
     cnx = create_connection()
     cursor = cnx.cursor()
     query = "SELECT * FROM employees"
     cursor.execute(query)
     results = cursor.fetchall()
+    all_employees = []
+    for employee in results:
+        id = employee[0]
+        name = employee[1]
+        function = employee[2]
+        newEmployee = Employee(id=id, name=name, function=function)
+        all_employees.append(newEmployee)
     cursor.close()
     cnx.close()
-    return results
+    return all_employees
 
-results = read_employees()
+

@@ -6,6 +6,33 @@
     <title>Reading data</title>
 </head>
 <body>
-    <h1>Reading data</h1>
+    <h1>Employees data</h1>
+    <table>
+        
+        <tr>
+          <th>Employee ID</th>
+          <th>Employee Name</th>
+          <th>Employee Function</th>
+        </tr>
+        {% for employee in all_employees %}
+            <tr>
+                <td>{{employee.id}}</td>
+                <td>{{employee.name}}</td>
+                <td>{{employee.function}}</td>
+            </tr>
+        {% endfor %}
+        
+      </table>
+      <style>
+        table, th, td {
+          border:1px solid black;
+        }
+        </style>
+    
+    
+        
+    
+    
+    
 </body>
 </html>

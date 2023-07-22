@@ -7,11 +7,11 @@
 </head>
 <body>
     <h1>Welcome to Simple-Python-CRUD</h1>
-    <form action="." method="post">
-        EMPLOYEE name: <input type="text" id="name" placeholder="employee name" name="employee_name"><br>
-        EMPLOYEE function:<input type="text" id="function" placeholder="employee function" name="employee_function">
+    <form action="{{url_for('insert')}}" method="post">
+        EMPLOYEE name: <input type="text" id="name" placeholder="employee name" name="employee_name" required="required"><br>
+        EMPLOYEE function:<input type="text" id="function" placeholder="employee function" name="employee_function" required="required">
         <input type="submit" id="send_button" name="send_button" value="send">
     </form>
-    <a href="./read.html"><input type="button" name="ReadButton" value="Read (show employees)"></a>
+    <a href="{{url_for('read')}}"><input type="button" name="ReadButton" value="Read (show employees)"></a>
 </body>
 </html>
